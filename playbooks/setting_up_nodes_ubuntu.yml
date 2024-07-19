@@ -83,18 +83,12 @@
   - name: updating cache
     apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
 
-
   - name: Installing required packages
     apt:
      name: "{{ item }}"
      state: present
      update_cache: yes
     with_items: "{{ packages }}"
-     vars:
-      packages:
-       - kubelet 
-       - kubeadm 
-       - kubectl
 
   - name: Starting and Enabling the required services
     service:
